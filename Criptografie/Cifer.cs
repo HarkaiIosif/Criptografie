@@ -70,7 +70,7 @@ namespace Criptografie
             string decryptedmessage=new string(chars);
             return decryptedmessage;
         }
-        public void Analasys(string imputmessage)
+        public virtual void Analasys(string imputmessage)
         {
             for(int i=0;i<26;i++)
             {

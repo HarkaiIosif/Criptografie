@@ -6,7 +6,15 @@ using System.Threading.Tasks;
 
 namespace Criptografie
 {
-    internal class Class1
+    internal class CeaserCifer:Cifer
     {
+        public CeaserCifer():base(3) 
+        {
+
+        }
+        public override void Analasys(string imputmessage)
+        {
+            Console.WriteLine(Decrypt(imputmessage, 3));
+        }
     }
 }

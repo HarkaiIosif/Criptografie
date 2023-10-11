@@ -11,13 +11,14 @@ namespace Criptografie
         private Dictionary<char, int> Encrypterchartoint = new Dictionary<char, int>();
         private List<char> Encrypterinttochar = new List<char>();
         private List<char> StandardAlphabet = new List<char>();
+        private char[] MostCommonEnglishLetter = new char[26];
         public MonalfabeticCifer()
         {
             CreateEncrypterList(Encrypterinttochar);
             CreateEncrypterList(StandardAlphabet);
             CreateEncrypterDictionary1();
-            ShuffleArray();
-
+            ShuffleList();
+            EnglishAlphabetOrder();
         }
         private void CreateEncrypterDictionary1()
         {
@@ -77,7 +78,7 @@ namespace Criptografie
             list.Add('y');
             list.Add('z');
         }   
-        private void ShuffleArray()
+        private void ShuffleList()
         {
             Random rnd = new Random();
             for (int i = 0; i < Encrypterinttochar.Count; i++)
@@ -145,6 +146,93 @@ namespace Criptografie
            int intermediary=Encrypterinttochar.IndexOf(letter);
            char toReturn = StandardAlphabet[intermediary];    
            return toReturn;
+        }
+        private void EnglishAlphabetOrder()
+        {
+            MostCommonEnglishLetter[0] = 'e';
+            MostCommonEnglishLetter[1] = 't';
+            MostCommonEnglishLetter[2] = 'a';
+            MostCommonEnglishLetter[3] = 'o';
+            MostCommonEnglishLetter[4] = 'i';
+            MostCommonEnglishLetter[5] = 'n';
+            MostCommonEnglishLetter[6] = 's';
+            MostCommonEnglishLetter[7] = 'r';
+            MostCommonEnglishLetter[8] = 'h';
+            MostCommonEnglishLetter[9] = 'l';
+            MostCommonEnglishLetter[10] = 'd';
+            MostCommonEnglishLetter[11] = 'c';
+            MostCommonEnglishLetter[12] = 'u';
+            MostCommonEnglishLetter[13] = 'm';
+            MostCommonEnglishLetter[14] = 'f';
+            MostCommonEnglishLetter[15] = 'p';
+            MostCommonEnglishLetter[16] = 'g';
+            MostCommonEnglishLetter[17] = 'w';
+            MostCommonEnglishLetter[18] = 'y';
+            MostCommonEnglishLetter[19] = 'b';
+            MostCommonEnglishLetter[20] = 'v';
+            MostCommonEnglishLetter[21] = 'k';
+            MostCommonEnglishLetter[22] = 'x';
+            MostCommonEnglishLetter[23] = 'j';
+            MostCommonEnglishLetter[24] = 'q';
+            MostCommonEnglishLetter[25] = 'z';
+        }
+        public string Analasys(string imputmessage)
+        {
+            char[] letters=imputmessage.ToCharArray();
+            int[] numberof=new int[MostCommonEnglishLetter.Length];
+            foreach(char letter in letters)
+            {
+                if (Char.IsLetter(letter)) 
+                {
+                    if (Char.IsUpper(letter))
+                    {
+                        numberof[Encrypterinttochar.IndexOf(Char.ToLower(letter))]++;
+                    }
+                    else numberof[Encrypterinttochar.IndexOf(letter)]++;
+                }
+            }
+            char[] Sorted=Encrypterinttochar.ToArray();
+            for(int i=0;i<numberof.Length-1;i++)
+            {
+                int index = i;
+                for(int j = i+1; j < numberof.Length; j++)
+                {
+                    if (numberof[j] > numberof[index])
+                    {
+                        index= j;
+                    }
+                }
+                (numberof[i], numberof[index]) = (numberof[index], numberof[i]);
+                (Sorted[i], Sorted[index]) = (Sorted[index], Sorted[i]);
+            }
+            List<char> SortedList=Sorted.ToList();
+            bool uppercase = false;
+            char[] chars = imputmessage.ToCharArray();
+            for (int i = 0; i < chars.Length; i++)
+            {
+                if (Char.IsLetter(chars[i]))
+                {
+                    if (Char.IsUpper(chars[i]))
+                    {
+                        uppercase = true;
+                        chars[i] = Char.ToLower(chars[i]);
+                    }
+                    chars[i] = AnalyseLetter(chars[i],SortedList);
+                    if (uppercase == true)
+                    {
+                        chars[i] = Char.ToUpper(chars[i]);
+                        uppercase = false;
+                    }
+                }
+            }
+            string decryptedmessage = new string(chars);
+            return decryptedmessage;
+        }
+        private char AnalyseLetter(char letter,List<char>List)
+        {
+            int intermediary=List.IndexOf(letter);
+            char toReturn = MostCommonEnglishLetter[intermediary];
+            return toReturn;
         }
     }
 }

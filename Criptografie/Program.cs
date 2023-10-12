@@ -1,7 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using Criptografie;
 //Cifer, CeaserCifer si MonoalfabeticCifer
-MonalfabeticCifer monoalpha = new MonalfabeticCifer();
+MonalfabeticCipher monoalpha = new MonalfabeticCipher();
 string test = Console.ReadLine();
 test =monoalpha.Encrypt(test);
 Console.WriteLine(test);

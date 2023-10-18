@@ -176,7 +176,7 @@ namespace Criptografie
             MostCommonEnglishLetter[24] = 'q';
             MostCommonEnglishLetter[25] = 'z';
         }
-        public string Analasys(string imputmessage)
+        public string Analysys(string imputmessage)
         {
             char[] letters=imputmessage.ToCharArray();
             int[] numberof=new int[MostCommonEnglishLetter.Length];

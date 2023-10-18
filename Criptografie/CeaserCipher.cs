@@ -12,7 +12,7 @@ namespace Criptografie
         {
 
         }
-        public override void Analasys(string imputmessage)
+        public override void Analysys(string imputmessage)
         {
             Console.WriteLine(Decrypt(imputmessage, 3));
         }

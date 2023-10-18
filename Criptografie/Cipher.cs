@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace Criptografie
 {
-    internal class Cifer
+    internal class Cipher
     {
         private int Key;
         private Dictionary<char, int> Encrypterchartoint = new Dictionary<char, int>();
         private Dictionary<int,char> Encrypterinttochar= new Dictionary<int,char>();
-        public Cifer(int key)
+        public Cipher(int key)
         {
             Key = key;
             CreateEncrypterDictionary1();

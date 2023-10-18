@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Criptografie
 {
-    internal class CeaserCifer:Cipher
+    internal class CeaserCipher:Cipher
     {
-        public CeaserCifer():base(3) 
+        public CeaserCipher():base(3) 
         {
 
         }

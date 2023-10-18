@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace Criptografie
 {
-    internal class MonalfabeticCifer
+    internal class MonalfabeticCipher
     {
         private Dictionary<char, int> Encrypterchartoint = new Dictionary<char, int>();
         private List<char> Encrypterinttochar = new List<char>();
         private List<char> StandardAlphabet = new List<char>();
         private char[] MostCommonEnglishLetter = new char[26];
-        public MonalfabeticCifer()
+        public MonalfabeticCipher()
         {
             CreateEncrypterList(Encrypterinttochar);
             CreateEncrypterList(StandardAlphabet);

@@ -5,7 +5,7 @@ MonalfabeticCipher monoalpha = new MonalfabeticCipher();
 string test = Console.ReadLine();
 test =monoalpha.Encrypt(test);
 Console.WriteLine(test);
-test = monoalpha.Analasys(test);
+test = monoalpha.Analysys(test);
 Console.WriteLine(test);
 Console.ReadKey();
     
